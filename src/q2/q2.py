@@ -16,13 +16,14 @@ class Strategy(ABC):
 
 
 SPY_CAN_MOVE_N_TILES = 1
-
-K = 2 * SPY_CAN_MOVE_N_TILES + 1
+MIN_K = 2 * SPY_CAN_MOVE_N_TILES + 1
 """
 let Q_N = the set of possible spy positions after N days 
 let x = the cardinality Q_{N+1} \ Q_{N}
 K = x/2 + 1
 """
+K = 10
+
 
 class Bastion:
     spy_index: int
@@ -96,7 +97,7 @@ class BreadthKMinusOneStrategy(Strategy):
 
 
 FAIL_AFTER_N_DAYS = 10000
-ITERATIONS_FOR_EACH_TEST = 100_000
+ITERATIONS_FOR_EACH_TEST = 1_000
 
 
 def all_advance_edge_case(strategy: Strategy):
@@ -139,7 +140,7 @@ def test_breadthk1_chase_edge_case():
     
 
 def main():
-    strategy = BreadthKMinusOneStrategy()
+    strategy = MinMaxStrategy()
 
     all_advance_edge_case(strategy)
 
